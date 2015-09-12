@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>   
+        <style>
+            .center {
+                margin: auto;
+                width: 50%;
+            }
+            .input-feed {
+                font-size: 14px;
+                height: 16px;
+                width: 50%;
+                margin: 12px 0 0 0;
+            }
+            .field-caption {
+                font-size: 14px;
+                font-weight: 300;
+                
+            }
+        </style>
+    </head>
+    <body>
+        <h1 class="center"> Training Diary start</h1>
+        
+        <div class="center">
+        <div>
+        <span class="field-caption">title</span>
+        <input type="text" class="input-feed" id="title">
+        </div>
+           <div>
+            <span class="field-caption">description</span>
+        <input type="text" class="input-feed" id="descr">
+        </div>
+           <div>
+            <span class="field-caption">Notes</span>
+        <input type="text" class="input-feed" id="notes">
+        </div>
+           <div>
+            <span class="field-caption">tags</span>
+        <input type="text" class="input-feed" id="tag">
+        </div>
+            <button onclick="addHarjoite()">Lisää harjoite</button>
+        <div id="harjoitteet">
+           
+            
+        </div>
+        <textarea id="ta" style="height:200px; width:100%; margin-top:12px;"> </textarea>
+        <button onclick="getData()"> hae data</button>
+        </div>
+    </body>
+    
+    <script src="testi.js"></script>
+    
+    <!--<script src="https://trainingdiary.firebaseio.com/excersice.json?callback=gotData&print=pretty"></script>-->
+</html>
