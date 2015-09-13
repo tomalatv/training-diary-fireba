@@ -1,8 +1,8 @@
 
 var fbRef = new Firebase('https://trainingdiary.firebaseio.com');
 var d = '';
+
 fbRef.child("exercises").on("child_added", function(snapshot){
-//fbRef.orderByChild("db").on("child_added", function(snapshot){
        console.log("******", snapshot.key());
         d += JSON.stringify(snapshot.val()) +'\n\n';
         var title = document.createElement("div");
@@ -19,12 +19,9 @@ fbRef.child("exercises").on("child_added", function(snapshot){
     });
 
 fbRef.child("exercises").on("child_removed", function(snapshot){
-//fbRef.orderByChild("db").on("child_added", function(snapshot){
        console.log("* DEL * ****", snapshot.key());
         d = '';
         d += JSON.stringify(snapshot.val()) +'\n\n';
-        //var list = document.getElementById("harjoitteet").
-        //list.removeChild(list.getElementById(snapshot.key()));
         gotData(d);
     });
 
@@ -35,37 +32,37 @@ function gotData(data) {
     document.getElementById("ta").innerHTML = data;
 }
 
-(function getData(){
-    
-    var xmlHttp = null;
-    var theUrl = 'https://trainingdiary.firebaseio.com/exercises.json?callback=gotData&print=pretty';
-    xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", theUrl, false );
-    xmlHttp.send();
-    gotData(xmlHttp.response);
-}());
-
 function addHarjoite() {
     var ti = document.getElementById("title").value;
     var no = document.getElementById("notes").value;
     var de = document.getElementById("descr").value;
     var tag = document.getElementById("tag").value;
     console.log(ti, no, de, tag);
-    
-        var xmlHttp = null;
-    var theUrl = 'https://trainingdiary.firebaseio.com/exercises.json';
-    xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "POST", theUrl, true);
-    var data = '{ "title": "'+ti+'", "notes": "'+no+'", "description": "'+de+'" ,"'+tag+'": "true" }';
+    var data = JSON.parse('{ "title": "'+ti+'", "notes": "'+no+'", "description": "'+de+'" ,"'+tag+'": "true" }');
     console.log('####', data);
-    xmlHttp.send(data);
+    var exerc = new Firebase('https://trainingdiary.firebaseio.com/exercises');
+    exerc.push(data);
 }
 
 function delHarjoite(hId){
     console.log(hId);
-     var xmlHttp = null;
-    var theUrl = 'https://trainingdiary.firebaseio.com/exercises/'+hId+'.json';
-    xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "DELETE", theUrl, false );
-    xmlHttp.send();
+    fbRef.child("exercises").child(hId).remove();
+}
+
+function logIn() {
+    fbRef.authWithPassword({
+    "email": document.getElementById("userid").value,
+    "password": document.getElementById("pwd").value
+    }, function(error, authData) {
+    if (error) {
+        console.log("Login Failed!", error);
+    } else {
+        console.log("Authenticated successfully with payload:", authData);
+    }
+});
+}
+
+function logOut() {
+    console.log("#### OUT -->>>!");
+    fbRef.unauth();
 }
