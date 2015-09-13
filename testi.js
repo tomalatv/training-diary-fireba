@@ -1,7 +1,7 @@
 
 var fbRef = new Firebase('https://trainingdiary.firebaseio.com');
 var d = '';
-
+var authD = null;
 fbRef.child("exercises").on("child_added", function(snapshot){
        console.log("******", snapshot.key());
         d += JSON.stringify(snapshot.val()) +'\n\n';
@@ -38,10 +38,14 @@ function addHarjoite() {
     var de = document.getElementById("descr").value;
     var tag = document.getElementById("tag").value;
     console.log(ti, no, de, tag);
-    var data = JSON.parse('{ "title": "'+ti+'", "notes": "'+no+'", "description": "'+de+'" ,"'+tag+'": "true" }');
+    if (authD !== null){
+    var data = JSON.parse('{ "title": "'+ti+'", "notes": "'+no+'", "description": "'+de+'" ,"'+tag+'": "true", "createdByUser": "'+authD.uid+'" }');
     console.log('####', data);
     var exerc = new Firebase('https://trainingdiary.firebaseio.com/exercises');
     exerc.push(data);
+    } else {
+        alert("You must log in first");
+    }
 }
 
 function delHarjoite(hId){
@@ -58,6 +62,7 @@ function logIn() {
         console.log("Login Failed!", error);
     } else {
         console.log("Authenticated successfully with payload:", authData);
+        authD = authData;
     }
 });
 }
