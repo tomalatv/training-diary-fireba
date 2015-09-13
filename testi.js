@@ -66,3 +66,7 @@ function logOut() {
     console.log("#### OUT -->>>!");
     fbRef.unauth();
 }
+
+function signIn () {
+    alert("This projec is heavily under construction so new user are not yet allowed to register !!");
+}
