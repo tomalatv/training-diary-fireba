@@ -1,2 +1,6 @@
 package.json
 platforms/*
+node_modules/*
+.zedstate
+cheatsheet.txt
+media-queries.css
