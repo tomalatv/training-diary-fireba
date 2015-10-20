@@ -1,0 +1,18 @@
+.center {
+    margin: auto;
+    width: 50%;
+}
+.input-feed {
+    font-size: 14px;
+    height: 16px;
+    width: 50%;
+    margin: 12px 0 0 0;
+}
+.field-caption {
+    font-size: 14px;
+    font-weight: 300;
+
+}
+.hidden {
+	display: none;
+}
