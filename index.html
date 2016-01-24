@@ -1,63 +1,126 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>   
+        <script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
+        <link rel="stylesheet" href=>
         <style>
-            .center {
-                margin: auto;
-                width: 50%;
-            }
-            .input-feed {
-                font-size: 14px;
-                height: 16px;
-                width: 50%;
-                margin: 12px 0 0 0;
-            }
-            .field-caption {
-                font-size: 14px;
-                font-weight: 300;
-                
-            }
+        @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css);
+        .center {
+            margin: auto;
+            width: 50%;
+        }
+        .input-feed {
+            font-size: 14px;
+            height: 16px;
+            width: 50%;
+            margin: 12px 0 0 0;
+        }
+        .field-caption {
+            font-size: 14px;
+            font-weight: 300;
+        }
+        
+        input + label {
+            display: block;
+        }
+        input[type=radio],
+        input[type=checkbox] {
+            display: none;
+            border: 0;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        }
+        
+        input[type=radio].with-font + label:before,
+        input[type=checkbox].with-font + label:before {
+            font-family: FontAwesome;
+            display: inline-block;
+            content: "\f1db";
+            letter-spacing: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #535353;
+            color: green;
+            width: 1.4em;
+        }
+        input[type=radio].with-font:checked + label:before,
+        input[type=checkbox].with-font:checked + label:before  {
+            content: "\f192";
+            font-size: 1.2em;
+            color: darkgreen;
+            letter-spacing: 5px;
+        }
+        input[type=checkbox].with-font + label:before {
+            content: "\f096";
+        }
+        input[type=checkbox].with-font:checked + label:before {
+            content: "\f046";
+            color: darkgreen;
+        }
+        /*input[type=radio].with-font:focus + label:before,
+        input[type=checkbox].with-font:focus + label:before,
+        input[type=radio].with-font:focus + label,
+        input[type=checkbox].with-font:focus + label
+        {
+            color: red;
+        }*/
         </style>
     </head>
     <body>
         <h1 class="center"> Training Diary start</h1>
         <div class="center">
-        <div>
-        <span class="field-caption">user name</span>
-        <input type="text" class="input-feed" id="userid">
-        </div>
-        <div>
-        <span class="field-caption">password</span>
-        <input type="password" class="input-feed" id="pwd">
-        </div>
-        <button onclick="logIn()">Log In</button>
-        <button onclick="logOut()">Log Out</button>
+            <div>
+                <span class="field-caption">user name</span>
+                <input type="text" class="input-feed" id="userid">
+            </div>
+            <div>
+                <span class="field-caption">password</span>
+                <input type="password" class="input-feed" id="pwd">
+            </div>
+            <button onclick="logIn()">Log In</button>
+            <button onclick="logOut()">Log Out</button>
         </div>
         <div class="center">
-        <div>
-        <span class="field-caption">title</span>
-        <input type="text" class="input-feed" id="title">
-        </div>
-           <div>
-            <span class="field-caption">description</span>
-        <input type="text" class="input-feed" id="descr">
-        </div>
-           <div>
-            <span class="field-caption">Notes</span>
-        <input type="text" class="input-feed" id="notes">
-        </div>
-           <div>
-            <span class="field-caption">tags</span>
-        <input type="text" class="input-feed" id="tag">
-        </div>
+            <div>
+                <span class="field-caption">title</span>
+                <input type="text" class="input-feed" id="title">
+            </div>
+            <div>
+                <span class="field-caption">description</span>
+                <input type="text" class="input-feed" id="descr">
+            </div>
+            <div>
+                <span class="field-caption">Notes</span>
+                <input type="text" class="input-feed" id="notes">
+            </div>
+            <div>
+                <span class="field-caption">tags</span>
+                <input type="text" class="input-feed" id="tag">
+            </div>
             <button onclick="addHarjoite()">Lisää harjoite</button>
-        <div id="harjoitteet">
-           
-            
+            <div id="harjoitteet">
+                
+                
+            </div>
+            <textarea id="ta" style="height:200px; width:100%; margin-top:12px;"> </textarea>
         </div>
-        <textarea id="ta" style="height:200px; width:100%; margin-top:12px;"> </textarea>
+        <div class="center">
+            <form>
+                
+                <input id="i-rad" type="radio" class="with-font" name="rad" value="val" />
+                <label for="i-rad">testi juttu</label>
+                <input id="i-rad1" type="radio"  class="with-font" name="rad" value="val" />
+                <label for="i-rad1">testi juttu3 </label>
+            </form>
+            <input class="with-font" type="checkbox" id="i-chek" value="va1" /> <label for="i-chek">testi juttu 2</label>
+            <input class="with-font" type="checkbox" id="i-chek2" value="va2" /> <label for="i-chek2">testi juttu 4</label>
         </div>
+        
     </body>
     
     <script src="testi.js"></script>
